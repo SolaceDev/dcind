@@ -103,7 +103,7 @@ start_docker() {
   if [ "$(command -v declare)" ]; then
     declare -fx try_start
 
-    if ! timeout ${STARTUP_TIMEOUT} bash -ce 'while true; do try_start && break; done'; then
+    if ! timeout -t ${STARTUP_TIMEOUT} bash -ce 'while true; do try_start && break; done'; then
       echo Docker failed to start within ${STARTUP_TIMEOUT} seconds.
       return 1
     fi
